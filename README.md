@@ -11,9 +11,9 @@
 ![recyclerview](https://github.com/wanghao200906/refreshLayout/raw/master/images/recyclerview.gif)
 
 
-##使用方法
+## 使用方法
 
-###xml
+### xml
  
  ```
  <?xml version="1.0" encoding="utf-8"?>
