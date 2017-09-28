@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.mypro.refreshlayout.listview.ListViewActivity;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     Button list_view_refresh;
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, ListViewActivity.class));
                 break;
             case R.id.recycleview_refresh:
-                startActivity(new Intent(MainActivity.this, ListViewActivity.class));
+                startActivity(new Intent(MainActivity.this, RecycleViewActivity.class));
                 break;
 
         }
