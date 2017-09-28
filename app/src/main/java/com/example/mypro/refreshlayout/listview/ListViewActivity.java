@@ -57,7 +57,5 @@ public class ListViewActivity extends AppCompatActivity {
             }
         });
         listview.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listData));
-
-
     }
 }
