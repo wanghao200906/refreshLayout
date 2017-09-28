@@ -20,7 +20,6 @@ import com.wh.reflayout.R;
 import refresh.header.DefaultHeader;
 import refresh.header.RefHeaderListener;
 import refresh.interfaces.OnRefListener;
-import refresh.interfaces.RefOtherViewListener;
 
 /**
  * Created by wanghao on 2017/9/21.
@@ -28,7 +27,7 @@ import refresh.interfaces.RefOtherViewListener;
 
 public class RefreshLayout extends FrameLayout {
     private static final String TAG = "RefreshLayout";
-    private RefOtherViewListener refOtherView;
+//    private RefOtherViewListener refOtherView;
 
     public RefreshLayout(Context context) {
         this(context, null);
@@ -445,86 +444,34 @@ public class RefreshLayout extends FrameLayout {
     /**
      * 显示错误页面
      */
-    public void showErrorView() {
-        showErrorView(false);
+    public void showErrorView(View view ) {
+        this.mErrorView = view;
+        this.removeViewAt(1);
+        this.addView(mErrorView);
+        this.requestLayout();
     }
 
-    /**
-     * 显示错误页面
-     *
-     * @param isNeedUpdate 是否需要每次调用都更新Error页面
-     */
-    public void showErrorView(boolean isNeedUpdate) {
-        if (getChildCount() != 2)
-            throw new ArrayIndexOutOfBoundsException("child count is error.");
-        if (refOtherView == null)
-            throw new NullPointerException("PtrSpecialView is null.");
-        if (refOtherView.geErrorView(this) == null)
-            throw new NullPointerException("PtrSpecialView.geErrorView() return null.");
-        if (getChildAt(1) == mErrorView) { // 已经添加了ErrorView
-            if (isNeedUpdate) {
-                // 更新最新的ErrorView
-                this.removeView(mErrorView);
-                this.mErrorView = refOtherView.geErrorView(this);
-                this.addView(mErrorView);
-                this.requestLayout();
-            }
-        } else {    // 第一次添加ErrorView
-            this.mErrorView = refOtherView.geErrorView(this);
-            this.removeViewAt(1);
-            this.addView(mErrorView);
-            this.requestLayout();
-        }
+    public void closeErrorView(){
+        this.removeViewAt(1);
+        this.requestLayout();
     }
 
     /**
      * 显示无数据的页面
      */
-    public void showEmptyView() {
-        showEmptyView(false);
+    public void showEmptyView(View view) {
+        this.mEmptyView = view;
+        this.removeViewAt(1);
+        this.addView(mEmptyView);
+        this.requestLayout();
     }
 
-    /**
-     * 显示无数据的页面
-     *
-     * @param isNeedUpdate 是否需要每次调用都更新Empty页面
-     */
-    public void showEmptyView(boolean isNeedUpdate) {
-        if (getChildCount() != 2)
-            throw new ArrayIndexOutOfBoundsException("child count is error.");
-        if (refOtherView == null)
-            throw new NullPointerException("PtrSpecialView is null.");
-        if (refOtherView.geEmptyView(this) == null)
-            throw new NullPointerException("PtrSpecialView.geEmptyView() return null.");
-        if (getChildAt(1) == this.mEmptyView) { // 已经添加了ErrorView
-            if (isNeedUpdate) {
-                // 更新最新的ErrorView
-                this.removeView(mEmptyView);
-                this.mEmptyView = refOtherView.geEmptyView(this);
-                this.addView(mEmptyView);
-                this.requestLayout();
-            }
-        } else {    // 第一次添加ErrorView
-            this.mEmptyView = refOtherView.geEmptyView(this);
-            this.removeViewAt(1);
-            this.addView(mEmptyView);
-            this.requestLayout();
-        }
+    public void closeEmptyView() { this.removeViewAt(1);
+        this.requestLayout();
     }
-
-    /**
-     * 设置特殊视图(错误页面和空页面)
-     *
-     * @param refOtherView
-     */
-    public void setRefOtherView(RefOtherViewListener refOtherView) {
-        this.refOtherView = refOtherView;
-    }
-
 
     public void setOnPtrListener(OnRefListener onRefListener) {
-        this.mOnPtrListener = onRefListener;
-    }
+        this.mOnPtrListener = onRefListener; }
 
     /**
      * 设置自定义Header
@@ -563,4 +510,6 @@ public class RefreshLayout extends FrameLayout {
     public void setDurationCloseHeader(int durationCloseHeader) {
         mDurationCloseHeader = durationCloseHeader;
     }
+
+
 }

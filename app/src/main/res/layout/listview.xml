@@ -8,25 +8,11 @@
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!--<TextView-->
-        <!--android:id="@+id/empty"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="#FF7F00"-->
-        <!--android:clickable="true"-->
-        <!--android:gravity="center"-->
-        <!--android:text="这是一个TextView"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:textSize="24sp"/>-->
-
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-
-
     </refresh.RefreshLayout>
 
 </LinearLayout>

@@ -2,6 +2,8 @@ package com.example.mypro.refreshlayout.listview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -11,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import refresh.interfaces.OnRefListener;
-import refresh.RefOtherViews;
 import refresh.RefreshLayout;
 
 /**
@@ -42,8 +43,9 @@ public class ListViewActivity extends AppCompatActivity {
         final refresh.RefreshLayout refreshLayout = (refresh.RefreshLayout) findViewById(R.id.refresh_layout);
         final ListView listview = (ListView) findViewById(R.id.list_view);
         refreshLayout.setEnableDisVerification(true);
-        refreshLayout.setRefOtherView(new RefOtherViews(this));
-        refreshLayout.showEmptyView();
+        View view = LayoutInflater.from(this).inflate(com.wh.reflayout.R.layout.ptr_empty_view, null, false);
+
+        refreshLayout.showEmptyView(view);
         refreshLayout.setOnPtrListener(new OnRefListener() {
             @Override
             public void onRefresh(RefreshLayout view) {
